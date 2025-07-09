@@ -29,7 +29,7 @@ Updating from main line to create a conflict
 #include "iopt_memmap.h"
 void Iopt_Adc_vArbitrationSlotEnable(void)
 {
-  EVADC_G0ARBPR.B.ASEN0 = 0; /* Group 0: Arbitration Slot 0 Enable */
+  EVADC_G0ARBPR.B.ASEN0 = 1; /* Group 0: Arbitration Slot 0 Enable */
   EVADC_G8ARBPR.B.ASEN0 = 1; /* Group 8: Arbitration Slot 0 Enable */
 }
 
