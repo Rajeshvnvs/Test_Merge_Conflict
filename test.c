@@ -4,4 +4,8 @@ adding more changes
 
 Updating code from side branch 1 
 
-  Editing from side branch 2 
+
+ 
+
+Updating from main line to create a conflict
+ Editing from side branch 2 
