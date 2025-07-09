@@ -57,3 +57,19 @@ void Iopt_Adc_vArbitrationSlotDisable(void)
 }
   Iopt_Adc_vSet3V3LvSntLimits(0x733, 0xAAA);
   Iopt_Adc_vSwitch3v3LvSntCheck(TRUE);
+void Iopt_Adc_vSetAlias(uint8 u8Group, uint8 u8AliasCh0, uint8 u8AliasCh1)
+{
+  /* clear value */
+  uAliasValue.U = 0;
+
+  /* set ALIAS on Group x */
+  uAliasValue.B.ALIAS0 = u8AliasCh0 & (uint8)0x1F;
+  uAliasValue.B.ALIAS1 = u8AliasCh1 & (uint8)0x1F;
+
+  /* write value into register if number of ADC group is valid*/
+  if (u8Group < IOPT_ADC_NUM_OF_GROUPS)
+  {
+    /* write ADC alias register */
+    MODULE_EVADC.G[u8Group].ALIAS.U = uAliasValue.U;
+  }
+}
