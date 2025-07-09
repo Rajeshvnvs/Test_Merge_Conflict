@@ -55,3 +55,5 @@ void Iopt_Adc_vArbitrationSlotDisable(void)
   EVADC_G0ARBPR.B.ASEN0 = 0; /* Group 0: Arbitration Slot 0 Disable */
   EVADC_G8ARBPR.B.ASEN0 = 0; /* Group 0: Arbitration Slot 0 Disable */
 }
+  Iopt_Adc_vSet3V3LvSntLimits(0x733, 0xAAA);
+  Iopt_Adc_vSwitch3v3LvSntCheck(TRUE);
