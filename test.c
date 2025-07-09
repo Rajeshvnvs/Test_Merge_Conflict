@@ -57,3 +57,17 @@ void Iopt_Adc_vArbitrationSlotDisable(void)
 }
   Iopt_Adc_vSet3V3LvSntLimits(0x733, 0xAAA);
   Iopt_Adc_vSwitch3v3LvSntCheck(TRUE);
+void Iopt_Adc_vSetMultiplexerTest(uint8 u8Group, uint8 u8Channel, boolean bEnablePullUp, boolean bEnablePullDown)
+{
+  /* set register value */
+  uGlobTfValue.U      = 0;                                                  /* clear value */
+  uGlobTfValue.B.CDCH = u8Channel & IOPT_ADC_CONV_DIAG_CHANNEL_MASK;        /* set channel */
+  uGlobTfValue.B.CDGR = u8Group   & IOPT_ADC_CONV_DIAG_GROUP_MASK;          /* set group */
+  uGlobTfValue.B.CDWC = 1;                                                  /* set write control */
+  uGlobTfValue.B.MDPU = (bEnablePullUp   == TRUE) ? 1 : 0;                  /* set parameter Enable Pullup*/
+  uGlobTfValue.B.MDPD = (bEnablePullDown == TRUE) ? 1 : 0;                  /* set parameter Enable Pulldown */
+  uGlobTfValue.B.MDWC = 1;                                                  /* set write control */
+
+  /* write value into register */
+  EVADC_GLOBTF = uGlobTfValue;
+}
